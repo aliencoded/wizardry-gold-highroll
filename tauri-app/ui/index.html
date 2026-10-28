@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wizardry Gold Patcher</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="banner">
+      <div class="die" id="die">30</div>
+      <div>
+        <h1>WIZARDRY GOLD</h1>
+        <p class="sub">Patcher &mdash; elite rolls &amp; game speed</p>
+      </div>
+    </header>
+
+    <!-- Status -->
+    <section class="badges">
+      <div class="badge" id="rollBadge"><span class="dot"></span><b id="rollTag">&mdash;</b><span id="rollLine"></span></div>
+      <div class="badge" id="speedBadge"><span class="dot"></span><b id="speedTag">&mdash;</b><span id="speedLine"></span></div>
+    </section>
+
+    <!-- Step 1: game -->
+    <section class="card">
+      <div class="step"><span class="num">1</span> Find the game</div>
+      <input id="exe" type="text" placeholder="path to WIZARD_720.EXE" />
+      <div class="row">
+        <button id="detect">Auto-detect</button>
+        <button id="refresh" class="ghost">Refresh status</button>
+      </div>
+    </section>
+
+    <!-- Step 2: rolls -->
+    <section class="card">
+      <div class="step"><span class="num">2</span> Character roll range</div>
+      <div class="bar"><div class="fill" id="rollFill"></div></div>
+      <div class="row">
+        <label>min <input id="lo" type="number" min="0" max="40" value="21" /></label>
+        <label>max <input id="hi" type="number" min="0" max="40" value="30" /></label>
+        <span class="hint" id="rollPreview">rolls 21-30</span>
+      </div>
+      <div class="row wrap">
+        <button class="chip" data-lo="21" data-hi="30">Faery Ninja 21-30</button>
+        <button class="chip" data-lo="30" data-hi="30">Always 30</button>
+        <button class="chip" data-lo="15" data-hi="30">Generous 15-30</button>
+      </div>
+      <div class="row">
+        <button id="applyRoll" class="primary">Apply rolls</button>
+        <button id="revertRoll" class="ghost">Revert rolls</button>
+      </div>
+    </section>
+
+    <!-- Step 3: speed -->
+    <section class="card">
+      <div class="step"><span class="num">3</span> Game speed <span class="note">(independent of rolls)</span></div>
+
+      <div class="field">
+        <span class="flabel">Game speed</span>
+        <div class="seg" id="factorSeg">
+          <button data-f="1">1x</button>
+          <button data-f="2">2x</button>
+          <button data-f="4">4x</button>
+          <button data-f="8">8x</button>
+          <button data-f="16">16x</button>
+        </div>
+        <span class="hint">movement, animation, combat pacing</span>
+      </div>
+
+      <div class="field">
+        <span class="flabel">Text time <span class="hint">(two tiers: main lines / quick lines &middot; Enter skips)</span></span>
+        <div class="row">
+          <label>main <input id="textFull" type="number" min="50" max="5000" step="50" value="1000" /></label>
+          <label>quick <input id="textHalf" type="number" min="50" max="5000" step="50" value="500" /></label>
+          <span class="unit">ms</span>
+        </div>
+        <div class="row wrap">
+          <button class="chip" data-full="1000" data-half="1000">Uniform 1000</button>
+          <button class="chip" data-full="1000" data-half="500">Split 1000/500</button>
+          <button class="chip" data-full="50" data-half="50">Stock 50</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <span class="flabel">Search wipe</span>
+        <div class="row">
+          <input id="search" type="number" min="0" max="127" value="12" /><span class="unit">ms/frame</span>
+          <span class="hint">spellbook / unlock / search sweep &middot; 0 = instant</span>
+        </div>
+      </div>
+
+      <div class="row">
+        <button id="applySpeed" class="primary">Apply speed</button>
+        <button id="revertSpeed" class="ghost">Revert speed</button>
+      </div>
+    </section>
+
+    <pre id="log" class="log" hidden></pre>
+    <p class="foot">Close the game before patching (the exe is file-locked while it runs). Fully reversible.</p>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>

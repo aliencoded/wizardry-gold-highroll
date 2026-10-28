@@ -1,0 +1,5 @@
+# The game is 32-bit. The mod DLL must match the target architecture, and the
+# injector should be 32-bit too so it shares the target's 32-bit kernel32 base
+# (clean WoW64 -> WoW64 CreateRemoteThread + LoadLibraryA).
+[build]
+target = "i686-pc-windows-msvc"

@@ -1,0 +1,12 @@
+[package]
+name = "wizmod"
+version = "0.1.0"
+edition = "2021"
+description = "Wizardry Gold in-game mod: combat-log popup + action presets (injected DLL)."
+
+[lib]
+name = "wizmod"
+crate-type = ["cdylib"]
+
+[dependencies]
+minhook = "0.5"

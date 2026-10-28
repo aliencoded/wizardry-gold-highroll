@@ -1,0 +1,3 @@
+# Only needed to reproduce the reverse-engineering (analyze.py / disasm_range.py).
+# The patcher (patch_wizgold.py) uses the standard library only.
+capstone>=5.0
